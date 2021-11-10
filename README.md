@@ -78,6 +78,7 @@ Lets you define oid to be recorded
 
 /datalog/
 
+
 ## How to query / change values (datapoints)
 
 ### Query values
@@ -103,6 +104,19 @@ http://Service:123@192.168.1.104/api/1.0/lookup/1/15/0/3/21/0
 Example:  
 #!/bin/bash  
 curl --request PUT http://192.168.1.104/api/1.0/datapoint --digest --user Service:123 --data-raw "{\"OID\":\"$1\",\"value\":\"$2\"}"
+
+## How to get values (datapoints)
+### Get all accessable values
+Get all accessable datapoints or OID's (the values are not updated with this request).
+With the information from the display and the myComfort App you can easily figure out the names of the Object ID's (e.g. "/1/15/0/3/21/0").
+
+curl --request GET http://192.168.1.104/api/1.0/datapoints --digest --user Service:123
+### Get a updated value
+For updated values from the windhager LON Bus, you can access each datapoint seperately:
+
+curl --request GET http://192.168.1.104/api/1.0/datapoint/1/15/0/3/21/0 --digest --user Service:123
+
+
 
 ## Read more (german)
 https://www.mikrocontroller.net/topic/353671
